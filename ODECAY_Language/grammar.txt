@@ -1,0 +1,62 @@
+<program> ::= {statement}
+
+<statement> ::= "INTPRAY" ( <expression> | <string> )
+            | "IFYAY" <comparison> "ENTHAY" <nl> <statement> "ENDIFYAY" <nl> ["ELSEYAY" "ENTHAY" <nl> <statement> "ENDIFYAY" <nl>]
+            | "ETLAY" <variable> "=" (expression | primary | boolean)
+            | "INPUTYAY" ["INTYAY"] <variable>
+
+<comparison> ::= ( <string> | <expression> | <boolean> ) (( "==" | "!=" | ">" | ">=" | "<" | "<=") ( <string> | <expression> | <boolean> ))+
+
+<expression> ::= <term> | {( "+" | "-" ) <term>}
+
+<term> ::= <unary> {( "/" | "*" ) <unary>}
+
+<unary> ::= ["+" | "-"] <primary>
+
+<primary> ::= <number> | <variable> [( "++" | "--" )] | "(" <expression> ")"
+
+<string> ::= "'" <variable> "'"
+
+<boolean> ::= "UETRAY" | "ALSEFAY"
+
+<number> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+<letter> ::= a | b | c | ... | z | A | B | C | ... | Z
+
+nl< ::= "\nl"
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+expression ::= term | "(" expression {("-" | "+") expression} ")"
+
+----------------------------------------------------
+EBNF
+
+<program> ::= { <statement> } 
+
+<statement> ::= "INTPRAY" ( <expression> | <string> ) 
+            | "IFYAY" <comparison> "ENTHAY" <nl> { <statement> } "ENDIFYAY" <nl> [ "ELSEYAY" "ENTHAY" nl { <statement> } "ENDIFYAY" <nl> ] 
+            | "ETLAY" <variable> "=" ( <expression> | <primary> | <boolean> ) 
+            | "INPUTYAY" [ "INTYAY" ] <variable> 
+
+<comparison> ::= ( <expression> | <boolean> ) { ( "==" | "!=" | ">" | ">=" | "<" | "<=" ) ( <expression> | <boolean> ) } 
+
+<expression> ::= <term> { ( "+" | "-" ) <term> } 
+
+<term> ::= <unary> { ( "/" | "*" ) <unary> } 
+
+<unary> ::= [ "+" | "-" ] <primary> 
+
+<primary> ::= <number> | <variable> [ ( "++" | "--" ) ] | "(" <expression> ")" 
+
+<variable> ::= <letter> { <letter> } 
+
+<string> ::= "'" { <letter> } "'" 
+
+<boolean> ::= "UETRAY" | "ALSEFAY" 
+
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" 
+
+<letter> ::= "a" | "b" | "c" | ... | "z" | "A" | "B" | "C" | ... | "Z" 
+
+<nl> ::= "\n"
